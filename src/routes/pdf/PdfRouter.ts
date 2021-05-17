@@ -16,17 +16,17 @@ class PdfRouter {
       res.status(200).json(this._controller.defaultMethod())
     })
     this._router.post('/', (req: Request, res: Response, next: NextFunction) => {
-      const { type } = req.query
+      logger.info('Starting pdf generate')
+      const { class: name, uniqueid, type } = req.query
+      const writeStream = createWriteStream(`./${name}_${type}_${uniqueid}.pdf`)
 
-      logger.info('Post in /api/pdf')
       req.on('data', chunk => {
         logger.info(`Chunk received...`)
-        const writeStream = createWriteStream(`./${type}.pdf`)
         writeStream.write(chunk)
       })
       req.on('end', () => {
         logger.info(`Closing connection`)
-        res.status(201).json({ text: 'ok' })
+        res.status(200).json({ text: 'ok' })
       })
     })
   }
