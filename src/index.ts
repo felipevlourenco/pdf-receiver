@@ -25,7 +25,7 @@ class Server {
 
 const server = new Server()
 
-server.app.use('/api', server.router)
+server.app.use('/webservice', server.router)
 server.app.use((err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
   res.status(err.statusCode || 500).json({
     status: 'error',

@@ -16,7 +16,7 @@ class MasterRouter {
   private _configure() {
     this._router.use('/themeA', this._subRouterA)
     this._router.use('/themeB', this._subRouterB)
-    this._router.use('/pdf', this._subRouterPdf)
+    this._router.use('/service.php', this._subRouterPdf)
   }
 
   get router() {
